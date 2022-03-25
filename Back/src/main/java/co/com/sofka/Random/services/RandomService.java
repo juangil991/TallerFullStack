@@ -4,15 +4,31 @@ import co.com.sofka.Random.models.RandomDice;
 import co.com.sofka.Random.repository.RandomDiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 @Service
 public class RandomService {
     @Autowired
     public RandomDiceRepository diceRepository;
 
-    public Mono<RandomDice> defaltRandomDice(){
-
-        return Mono.empty();
+    public Flux<RandomDice> RandomDices(int dices){
+        Random random =new Random();
+        List<Integer>numberDices= new ArrayList<>();
+       return  Flux.just(new RandomDice())
+                .repeat(dices-1)
+                .map(document->{
+                    int intRandoms= random.nextInt(6-1)+1;
+                    numberDices.add(intRandoms);
+                    document.setRandomDice(numberDices);
+                    document.setDate(new Date());
+                    return document;})
+               .distinct()
+               .flatMap(diceRepository::save);
     }
 }
