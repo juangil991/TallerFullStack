@@ -8,7 +8,7 @@ class App extends Component {// component stateful
       return (
         <div>
           <h1>Dados Random</h1>
-          <p>Generar Dados Aleatoriamente</p>
+          <h4>Generar Dados Aleatoriamente</h4>
           <Numbersdice/>
         </div>
       )

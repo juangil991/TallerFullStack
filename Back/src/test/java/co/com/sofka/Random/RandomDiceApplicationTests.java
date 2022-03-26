@@ -18,7 +18,7 @@ class RandomDiceApplicationTests {
 	void TestRandom(){
 		Random random =new Random();
 		List<Integer>prueba= new ArrayList<>();
-		var pruebitas=Flux.just(prueba)
+		Flux.just(prueba)
 				.repeat(5)
 				.subscribe(p->{
 					int intRandoms= random.nextInt(6-1)+1;
