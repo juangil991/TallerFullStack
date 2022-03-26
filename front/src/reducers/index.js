@@ -6,7 +6,6 @@ function view(state = {
     loading: false
 }, action) {
     switch (action.type) {
-        //TODO: refactorizar
         case "view-loading": {
             return {
                 loading: true
