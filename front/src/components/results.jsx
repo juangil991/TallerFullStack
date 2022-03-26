@@ -1,27 +1,20 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import Imagenes from './imagenes';
 const Result = (props) => {
-   let url=[];
-   const show= url.map((element)=>{
-       <div>
-       <img src='https://www.random.org/dice/dice4.png'/>
-       </div>
-   })
-
+    const dices= props.result;
+    const show= dices.map((element)=>
+        <img src={'https://www.random.org/dice/dice'+ element +'.png'} />
+    )
   return(<div>
-          {props.result && 'Resultado: '+ props.result.map((element)=>
-             "ResultDice: "+ element + "\n"
-          )}
+          {show} 
       </div>  )
 }
 
 const stateMapToPros = state => {
-
-  return {
-    result: state.random.result?.randomDice,
-    loading: state.view.loading
-  }
+    return {
+      result: state.random.result?.randomDice
+    }
+  
 }
 
 

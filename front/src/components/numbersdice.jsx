@@ -8,10 +8,9 @@ const From = (props) => {// component stateless
   const onSubmit = (e) => {
     e.preventDefault();
     props.dispatch(fetchRandom(state));
-
   };
 
-  return <div>
+  return <div> 
     <form onSubmit={onSubmit}>
       <label htmlFor="list">Ingrese el numero de Dados</label>
       <br />
@@ -22,8 +21,9 @@ const From = (props) => {// component stateless
       <button type="submit" disabled={props.loading}>
         Tirar
       </button>
+      {}
     </form>
-    {isNaN(props.result)?"":<Results/>}
+    {props.result?<Results/>:"comoestas"}
   </div>
 }
 
@@ -31,7 +31,7 @@ const From = (props) => {// component stateless
 const stateMapToPros = state => {
   return {
     loading: state.view.loading,
-    result: state.random.result?.randomDice
+    result: state.random.estado
   }
 }
 

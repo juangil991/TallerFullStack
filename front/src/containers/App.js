@@ -10,7 +10,6 @@ class App extends Component {// component stateful
           <h1>Dados Random</h1>
           <p>Generar Dados Aleatoriamente</p>
           <Numbersdice/>
-          <Results/>
         </div>
       )
     }

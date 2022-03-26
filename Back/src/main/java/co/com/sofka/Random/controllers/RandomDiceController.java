@@ -16,7 +16,7 @@ public class RandomDiceController {
     RandomService diceServices;
 
     @PostMapping("")
-    public Flux<RandomDice> defaultRandomDice(@RequestBody RandomDiceDto dices){
+    public Mono<RandomDice> defaultRandomDice(@RequestBody RandomDiceDto dices){
         return diceServices.RandomDices(dices.getDices());
     }
 

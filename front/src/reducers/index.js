@@ -25,7 +25,9 @@ function random(state = {
 }, action) {
     switch (action.type) {
         case "random-result": {
-            return { result: action.data }
+            return { result: action.data,
+                estado:true            
+            }
         }
         default: return state
     }

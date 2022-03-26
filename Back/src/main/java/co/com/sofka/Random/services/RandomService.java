@@ -17,14 +17,14 @@ public class RandomService {
     @Autowired
     public RandomDiceRepository diceRepository;
 
-    public Flux<RandomDice> RandomDices(int dices){
+    public Mono<RandomDice> RandomDices(int dices){
         Random random =new Random();
         List<Integer>numberDices= new ArrayList<>();
         Flux.just(numberDices).repeat(dices-1).subscribe(p->{
             int intRandoms= random.nextInt(6-1)+1;
             numberDices.add(intRandoms);
         });
-       return  Flux.just(new RandomDice())
+       return  Mono.just(new RandomDice())
                 .map(document->{
                     document.setRandomDice(numberDices);
                     document.setDate(new Date());
