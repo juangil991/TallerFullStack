@@ -20,15 +20,19 @@ public class RandomService {
     public Flux<RandomDice> RandomDices(int dices){
         Random random =new Random();
         List<Integer>numberDices= new ArrayList<>();
+        Flux.just(numberDices).repeat(dices-1).subscribe(p->{
+            int intRandoms= random.nextInt(6-1)+1;
+            numberDices.add(intRandoms);
+        });
        return  Flux.just(new RandomDice())
-                .repeat(dices-1)
                 .map(document->{
-                    int intRandoms= random.nextInt(6-1)+1;
-                    numberDices.add(intRandoms);
                     document.setRandomDice(numberDices);
                     document.setDate(new Date());
                     return document;})
-               .distinct()
                .flatMap(diceRepository::save);
+    }
+
+    public Flux<RandomDice> historyDices(){
+        return diceRepository.findAll();
     }
 }

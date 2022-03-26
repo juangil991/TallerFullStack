@@ -18,13 +18,13 @@ class RandomDiceApplicationTests {
 	void TestRandom(){
 		Random random =new Random();
 		List<Integer>prueba= new ArrayList<>();
-		var pruebitas=Flux.just(prueba).repeat(100).map(p->{
-			int intRandoms= random.nextInt(6-1)+1;
-			prueba.add(intRandoms);
-			return prueba;
-		}).doFinally(signalType -> System.out.println(prueba));
+		var pruebitas=Flux.just(prueba)
+				.repeat(5)
+				.subscribe(p->{
+					int intRandoms= random.nextInt(6-1)+1;
+					prueba.add(intRandoms);});
 
-		pruebitas.subscribe();
+		System.out.println(prueba);
 
 
 
